@@ -1,27 +1,39 @@
 import os
 
-
 import tensorflow as tf
 import numpy as np
 import random
+import pickle
 
 # from wang.trainModel import *
-from wang.trainModel import movie_matrics
-from wang.trainModel import movieid2idx
-from wang.trainModel import load_dir
-from wang.trainModel import movies_orig
-from wang.trainModel import users_matrics
-from wang.trainModel import users_orig
-
-
-
 
 os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
+
+movie_matrics = pickle.load(open('movie_matrics.p', mode='rb'))
+users_matrics = pickle.load(open('users_matrics.p', mode='rb'))
+
+# 从本地读取数据
+title_count, title_set, genres2int, features, targets_values, ratings, users, movies, data, movies_orig, users_orig = pickle.load(open('preprocess.p', mode='rb'))
+#电影ID转下标的字典，数据集中电影ID跟下标不一致，比如第5行的数据电影ID不一定是5
+movieid2idx = {val[0]:i for i, val in enumerate(movies.values)}
+
+
+def load_params():
+    """
+    Load parameters from file
+    """
+    return pickle.load(open('params.p', mode='rb'))
+
+
+load_dir = load_params()
+print('load_dir: ', load_dir)
+
 
 def recommend_same_type_movie(movie_id_val, top_k=20):
     loaded_graph = tf.Graph()  #
     with tf.Session(graph=loaded_graph) as sess:  #
         # Load saved model
+        print('load_dir: ', load_dir)
         loader = tf.train.import_meta_graph(load_dir + '.meta')
         loader.restore(sess, load_dir)
 

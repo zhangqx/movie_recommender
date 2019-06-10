@@ -6,15 +6,13 @@
 # from wang.dataPretreatment import *
 
 from wang.config import *
-from wang.dataPretreatment import *
+import pandas as pd
+import pickle
+import tensorflow as tf
 
 
-
-# 模型设计
-# 模型设计
-# 模型设计
-
-# 辅助函数
+# 从本地读取数据
+title_count, title_set, genres2int, features, targets_values, ratings, users, movies, data, movies_orig, users_orig = pickle.load(open('preprocess.p', mode='rb'))
 
 
 def save_params(params):
@@ -72,7 +70,7 @@ movieid2idx = {val[0]:i for i, val in enumerate(movies.values)}
 
 
 # Number of Epochs
-num_epochs = 5
+num_epochs = 1
 # Batch Size
 batch_size = 256
 
@@ -267,12 +265,6 @@ with train_graph.as_default():
 inference
 
 
-# 取得batch
-
-def get_batches(Xs, ys, batch_size):
-    for start in range(0, len(Xs), batch_size):
-        end = min(start + batch_size, len(Xs))
-        yield Xs[start:end], ys[start:end]
 
 
 
