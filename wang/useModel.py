@@ -4,11 +4,13 @@ import tensorflow as tf
 import numpy as np
 import random
 import pickle
-
-# from wang.trainModel import *
+from flask import Flask
+from flask import request
+import json
 
 os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 
+app = Flask(__name__)
 movie_matrics = pickle.load(open('movie_matrics.p', mode='rb'))
 users_matrics = pickle.load(open('users_matrics.p', mode='rb'))
 
@@ -62,7 +64,8 @@ def recommend_same_type_movie(movie_id_val, top_k=20):
 
         return results
 
-recommend_same_type_movie(1401, 20)
+
+# recommend_same_type_movie(1401, 20)
 
 
 # 推荐您喜欢的电影
@@ -100,13 +103,11 @@ def recommend_your_favorite_movie(user_id_val, top_k=10):
 
         return results
 
-recommend_your_favorite_movie(234, 10)
+
+# recommend_your_favorite_movie(234, 10)
 
 
 # 看过这个电影的人还喜欢看什么电影
-
-
-
 def recommend_other_favorite_movie(movie_id_val, top_k=20):
     loaded_graph = tf.Graph()  #
     with tf.Session(graph=loaded_graph) as sess:  #
@@ -145,8 +146,30 @@ def recommend_other_favorite_movie(movie_id_val, top_k=20):
 
         return results
 
-recommend_other_favorite_movie(1401, 20)
+
+# recommend_other_favorite_movie(1401, 20)
 
 
+@app.route("/")
+def isStarted():
+    return "Started!"
 
 
+@app.route("/function1", methods=["GET", "POST"])
+def function1():
+    if request.method == "POST":
+        movieId = request.form.get("movieId")
+        count = request.form.get("count")
+    else:
+        movieId = request.args.get("movieId")
+        count = request.args.get("count")
+    print(movieId, count)
+
+    result = recommend_same_type_movie(1401, 20)
+
+    return "返回数据"
+
+
+if __name__ == '__main__':
+    print('server is start at 7000')
+    app.run(host='0.0.0.0', port=7000)
