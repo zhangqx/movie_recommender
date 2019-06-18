@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/index.css">
+<!--    <link rel="stylesheet" href="css/animate.css">-->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+
+        body{
+            background:#2A2A2A;
+            z-index: -1;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+<div id="large-header">
+    <canvas id="demo-canvas" width="2880" height="" style="position: absolute;top: 0;left: 0; z-index: -1"></canvas>
+
+    <h1 class="text-center">电影推荐系统前端界面演示</h1>
+
+    <h5 style="padding: 30px"></h5><!--水平分割线-->
+
+    <div class="container">
+        <h2 class="text-center">推荐同类型电影：</h2>
+        <form class="form-inline">
+            <div class="form-group">
+                <label class="sr-only" for="sameTypeMovie">请输入电影ID</label>
+                <input type="text" class="form-control" id="sameTypeMovie" placeholder="请输入电影ID:">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="sameTypeMovieNumber">推荐电影数量</label>
+                <input type="number" class="form-control" id="sameTypeMovieNumber" placeholder="推荐电影数量">
+            </div>
+            <button type="submit" class="btn btn-default">提交</button>
+        </form>
+        <p>1555 [1596 'Career Girls (1997)' 'Drama']</p>
+        <p>1581 [1624 'Thousand Acres, A (1997)' 'Drama']</p>
+        <p>2157 [2226 'Ring, The (1927)' 'Drama']</p>
+        <p>2214 [2283 'Sheltering Sky, The (1990)' 'Drama']</p>
+        <p>2863 [2932 'Days of Heaven (1978)' 'Drama']</p>
+    </div>
+
+    <h5 class="page-header"></h5><!--水平分割线-->
+
+    <div class="container">
+        <h2 class="text-center">推荐喜欢的电影：</h2>
+        <form class="form-inline">
+            <div class="form-group">
+                <label class="sr-only" for="meLikeMovie">请输入用户ID</label>
+                <input type="text" class="form-control" id="meLikeMovie" placeholder="请输入用户ID:">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="meLikeMovieNumber">推荐电影数量</label>
+                <input type="number" class="form-control" id="meLikeMovieNumber" placeholder="推荐电影数量">
+            </div>
+            <button type="submit" class="btn btn-success">提交</button>
+        </form>
+        <p>1555 [1596 'Career Girls (1997)' 'Drama']</p>
+        <p>1581 [1624 'Thousand Acres, A (1997)' 'Drama']</p>
+        <p>2157 [2226 'Ring, The (1927)' 'Drama']</p>
+        <p>2214 [2283 'Sheltering Sky, The (1990)' 'Drama']</p>
+        <p>2863 [2932 'Days of Heaven (1978)' 'Drama']</p>
+    </div>
+
+    <h5 class="page-header"></h5><!--水平分割线-->
+
+    <div class="container">
+        <h2 class="text-center">看过这个电影的人还喜欢：</h2>
+        <form class="form-inline">
+            <div class="form-group">
+                <label class="sr-only" for="otherLikeMovie">请输入电影ID</label>
+                <input type="text" class="form-control" id="otherLikeMovie" placeholder="请输入电影ID:">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="otherLikeMovieNumber">推荐电影数量</label>
+                <input type="number" class="form-control" id="otherLikeMovieNumber" placeholder="推荐电影数量">
+            </div>
+            <button type="submit" class="btn btn-primary">提交</button>
+        </form>
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>喜欢这个电影的人是：</h3>
+                <p>[5456 'M' 35 1]</p>
+                <p>[5967 'M' 50 16]</p>
+                <p>[3162 'M' 25 1]</p>
+                <p>[3550 'M' 25 5]</p>
+                <p>[5456 'M' 35 1]</p>
+                <p>[5967 'M' 50 16]</p>
+                <p>[3162 'M' 25 1]</p>
+                <p>[3550 'M' 25 5]</p>
+                <p>[5456 'M' 35 1]</p>
+                <p>[5967 'M' 50 16]</p>
+            </div>
+            <div class="col-lg-6">
+                <h3>他们喜欢的电影是：</h3>
+                <p>1555 [1596 'Career Girls (1997)' 'Drama']</p>
+                <p>1581 [1624 'Thousand Acres, A (1997)' 'Drama']</p>
+                <p>2157 [2226 'Ring, The (1927)' 'Drama']</p>
+                <p>2214 [2283 'Sheltering Sky, The (1990)' 'Drama']</p>
+                <p>2863 [2932 'Days of Heaven (1978)' 'Drama']</p>
+                <p>1555 [1596 'Career Girls (1997)' 'Drama']</p>
+                <p>1581 [1624 'Thousand Acres, A (1997)' 'Drama']</p>
+                <p>2157 [2226 'Ring, The (1927)' 'Drama']</p>
+                <p>2214 [2283 'Sheltering Sky, The (1990)' 'Drama']</p>
+                <p>2863 [2932 'Days of Heaven (1978)' 'Drama']</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script src="js/jquery-3.0.0.js"></script>
+<script src="js/bootstrap.js"></script>
+<!--<script src="js/convasBG.js"></script>-->
+<script src="js/EasePack.min.js"></script>
+<script src="js/TweenLite.min.js"></script>
+<script src="js/helloweb.js"></script>
+<script>
+    $(function(){
+        // canvasGranuleBg.newInstanceCanvs();
+
+        // /*新闻列表加载*/
+        // $.ajax({
+        //     async: false,
+        //     type: "get",
+        //     url: "json/homeNews.json",
+        //     cache: false,
+        //     dataType: "json",
+        //     success: function(result) {
+        //
+        //         if(result.code == 200){
+        //             var data = result.data;
+        //             var imgSrc;
+        //             var newsClone;
+        //             var title;
+        //
+        //             for(var i=0;i<data.length;i++){
+        //                 imgSrc=data[i].imgMobile;
+        //                 title=data[i].title;
+        //                 newsClone=$(".none").clone();
+        //                 newsClone.attr("newId",data[i].id);     /*设置一个自定义属性id 跳转后加载不同数据*/
+        //                 newsClone.removeClass("none");
+        //                 newsClone.find("img").attr("src","upload/"+imgSrc);
+        //                 newsClone.find("p").html(title);
+        //                 $(".news_list").append(newsClone);
+        //             }
+        //         }else{
+        //             alert("请求失败！")
+        //         }
+        //     },
+        //     error:function(){
+        //         alert("异常！")
+        //     }
+        // });
+        // $('.news_list').delegate('.news_item', 'click', function () {    //	点击列表
+        //     self.location.href = 'detailNews.html'+"?"+'&newId='+$(this).attr('newId');
+        // });
+
+
+
+
+    })
+</script>
+</body>
+</html>
