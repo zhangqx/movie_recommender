@@ -55,14 +55,20 @@ def recommend_same_type_movie(movie_id_val, top_k=20):
         p[np.argsort(p)[:-top_k]] = 0
         p = p / np.sum(p)
         results = set()
-        while len(results) != 5:
+        movies = []
+        while len(results) != top_k:
             c = np.random.choice(3883, 1, p=p)[0]
             results.add(c)
         for val in (results):
             print(val)
             print(movies_orig[val])
+            movie = {}
+            movie['id'] = movies_orig[val][0]
+            movie['name'] = movies_orig[val][1]
+            movie['type'] = movies_orig[val][2]
+            movies.append(movie)
 
-        return results
+        return movies
 
 
 # recommend_same_type_movie(1401, 20)
@@ -94,14 +100,20 @@ def recommend_your_favorite_movie(user_id_val, top_k=10):
         p[np.argsort(p)[:-top_k]] = 0
         p = p / np.sum(p)
         results = set()
+        movies = []
         while len(results) != 5:
             c = np.random.choice(3883, 1, p=p)[0]
             results.add(c)
         for val in (results):
             print(val)
             print(movies_orig[val])
+            movie = {}
+            movie['id'] = movies_orig[val][0]
+            movie['name'] = movies_orig[val][1]
+            movie['type'] = movies_orig[val][2]
+            movies.append(movie)
 
-        return results
+        return movies
 
 
 # recommend_your_favorite_movie(234, 10)
@@ -122,9 +134,22 @@ def recommend_other_favorite_movie(movie_id_val, top_k=20):
         #     print(probs_user_favorite_similarity.eval()[0][favorite_user_id])
         #     print(favorite_user_id.shape)
 
+        user_movies = {}
         print("您看的电影是：{}".format(movies_orig[movieid2idx[movie_id_val]]))
 
         print("喜欢看这个电影的人是：{}".format(users_orig[favorite_user_id - 1]))
+        usersArray = users_orig[favorite_user_id - 1]
+        users = []
+        for item in usersArray:
+            user = {}
+            user['id'] = item[0]
+            user['sex'] = item[1]
+            user['age'] = item[2]
+            user['occupation'] = item[3]
+            users.append(user)
+
+        # users = "{}".format(users_orig[favorite_user_id - 1])
+        user_movies['users'] = users
         probs_users_embeddings = (users_matrics[favorite_user_id - 1]).reshape([-1, 200])
         probs_similarity = tf.matmul(probs_users_embeddings, tf.transpose(movie_matrics))
         sim = (probs_similarity.eval())
@@ -137,37 +162,77 @@ def recommend_other_favorite_movie(movie_id_val, top_k=20):
         print("喜欢看这个电影的人还喜欢看：")
 
         results = set()
+        movies = []
         while len(results) != 5:
             c = p[random.randrange(top_k)]
             results.add(c)
         for val in (results):
             print(val)
             print(movies_orig[val])
+            movie = {}
+            movie['id'] = movies_orig[val][0]
+            movie['name'] = movies_orig[val][1]
+            movie['type'] = movies_orig[val][2]
+            movies.append(movie)
 
-        return results
+        user_movies['movies'] = movies
+        return user_movies
 
 
 # recommend_other_favorite_movie(1401, 20)
 
 
 @app.route("/")
-def isStarted():
+def is_started():
     return "Started!"
 
 
+# 根据电影推荐相同类型的电影
 @app.route("/function1", methods=["GET", "POST"])
 def function1():
     if request.method == "POST":
-        movieId = request.form.get("movieId")
+        movie_id = request.form.get("movieId")
         count = request.form.get("count")
+
     else:
-        movieId = request.args.get("movieId")
+        movie_id = request.args.get("movieId")
         count = request.args.get("count")
-    print(movieId, count)
+    print(movie_id, count)
 
-    result = recommend_same_type_movie(1401, 20)
+    result = recommend_same_type_movie(int(movie_id), int(count))
+    return json.dumps(result)
 
-    return "返回数据"
+
+# 根据用户推荐相同类型的电影
+@app.route("/function2", methods=["GET", "POST"])
+def function2():
+    if request.method == "POST":
+        user_id = request.form.get("userId")
+        count = request.form.get("count")
+
+    else:
+        user_id = request.args.get("userId")
+        count = request.args.get("count")
+    print(user_id, count)
+
+    result = recommend_your_favorite_movie(int(user_id), int(count))
+    return json.dumps(result)
+
+
+# 看过这个电影的人还喜欢看什么电影
+@app.route("/function3", methods=["GET", "POST"])
+def function3():
+    if request.method == "POST":
+        movie_id = request.form.get("movieId")
+        count = request.form.get("count")
+
+    else:
+        movie_id = request.args.get("movieId")
+        count = request.args.get("count")
+    print(movie_id, count)
+
+    result = recommend_other_favorite_movie(int(movie_id), int(count))
+    return json.dumps(result)
 
 
 if __name__ == '__main__':
