@@ -108,7 +108,14 @@
             var part1 = $(".part1");
             var movieId = part1.find("#sameTypeMovie").val();
             var movieNumber = part1.find("#sameTypeMovieNumber").val();
-
+            if (movieId>3952 || movieId<1){
+                alert("电影ID是介于1-3954之间的数字，请重新输入");
+                return;
+            }
+            if (movieNumber==""){
+                alert("请输入电影数量");
+                return;
+            }
             $.ajax({
                 async: false,
                 type: "get",
@@ -142,6 +149,15 @@
             var part2 = $(".part2");
             var userId = part2.find("#meLikeMovie").val();
             var movieNumber = part2.find("#meLikeMovieNumber").val();
+console.log(userId)
+            if (userId>6040 || userId<1){
+                alert("用户ID是介于1-6040之间的数字，请重新输入");
+                return;
+            };
+            if (movieNumber==""){
+                alert("请输入电影数量");
+                return;
+            }
 
             $.ajax({
                 async: false,
@@ -150,7 +166,6 @@
                 cache: false,
                 dataType: "json",
                 success: function(result) {
-                    console.log(result)
                     part2.find("p:not(:first)").remove();
                     var id;
                     var name;
@@ -177,7 +192,14 @@
             var part3 = $(".part3");
             var movieId = part3.find("#otherLikeMovie").val();
             var movieNumber = part3.find("#otherLikeMovieNumber").val();
-
+            if (movieId>3952 || movieId<1){
+                alert("电影ID是介于1-3954之间的数字，请重新输入");
+                return;
+            }
+            if (movieNumber==""){
+                alert("请输入电影数量");
+                return;
+            }
             $.ajax({
                 async: false,
                 type: "get",
@@ -185,7 +207,7 @@
                 cache: false,
                 dataType: "json",
                 success: function(result) {
-                    console.log(result)
+
                     part3.find(".peaple p:not(:first)").remove();
                     var mID;
                     var name;
