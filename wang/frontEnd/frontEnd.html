@@ -13,6 +13,9 @@
             z-index: -1;
             color: #ffffff;
         }
+        .none{
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -24,7 +27,7 @@
 
     <h5 style="padding: 30px"></h5><!--水平分割线-->
 
-    <div class="container">
+    <div class="container part1">
         <h2 class="text-center">推荐同类型电影：</h2>
         <form class="form-inline">
             <div class="form-group">
@@ -35,18 +38,14 @@
                 <label class="sr-only" for="sameTypeMovieNumber">推荐电影数量</label>
                 <input type="number" class="form-control" id="sameTypeMovieNumber" placeholder="推荐电影数量">
             </div>
-            <button type="submit" class="btn btn-default">提交</button>
+            <button type="button" class="btn btn-default" id="btn1">提交</button>
         </form>
-        <p>1555 [1596 'Career Girls (1997)' 'Drama']</p>
-        <p>1581 [1624 'Thousand Acres, A (1997)' 'Drama']</p>
-        <p>2157 [2226 'Ring, The (1927)' 'Drama']</p>
-        <p>2214 [2283 'Sheltering Sky, The (1990)' 'Drama']</p>
-        <p>2863 [2932 'Days of Heaven (1978)' 'Drama']</p>
+        <p class="none"></p>
     </div>
 
     <h5 class="page-header"></h5><!--水平分割线-->
 
-    <div class="container">
+    <div class="container part2">
         <h2 class="text-center">推荐喜欢的电影：</h2>
         <form class="form-inline">
             <div class="form-group">
@@ -57,18 +56,14 @@
                 <label class="sr-only" for="meLikeMovieNumber">推荐电影数量</label>
                 <input type="number" class="form-control" id="meLikeMovieNumber" placeholder="推荐电影数量">
             </div>
-            <button type="submit" class="btn btn-success">提交</button>
+            <button type="button" class="btn btn-success" id="btn2">提交</button>
         </form>
-        <p>1555 [1596 'Career Girls (1997)' 'Drama']</p>
-        <p>1581 [1624 'Thousand Acres, A (1997)' 'Drama']</p>
-        <p>2157 [2226 'Ring, The (1927)' 'Drama']</p>
-        <p>2214 [2283 'Sheltering Sky, The (1990)' 'Drama']</p>
-        <p>2863 [2932 'Days of Heaven (1978)' 'Drama']</p>
+        <p class="none"></p>
     </div>
 
     <h5 class="page-header"></h5><!--水平分割线-->
 
-    <div class="container">
+    <div class="container part3">
         <h2 class="text-center">看过这个电影的人还喜欢：</h2>
         <form class="form-inline">
             <div class="form-group">
@@ -79,34 +74,16 @@
                 <label class="sr-only" for="otherLikeMovieNumber">推荐电影数量</label>
                 <input type="number" class="form-control" id="otherLikeMovieNumber" placeholder="推荐电影数量">
             </div>
-            <button type="submit" class="btn btn-primary">提交</button>
+            <button type="button" class="btn btn-primary" id="btn3">提交</button>
         </form>
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6 peaple">
                 <h3>喜欢这个电影的人是：</h3>
-                <p>[5456 'M' 35 1]</p>
-                <p>[5967 'M' 50 16]</p>
-                <p>[3162 'M' 25 1]</p>
-                <p>[3550 'M' 25 5]</p>
-                <p>[5456 'M' 35 1]</p>
-                <p>[5967 'M' 50 16]</p>
-                <p>[3162 'M' 25 1]</p>
-                <p>[3550 'M' 25 5]</p>
-                <p>[5456 'M' 35 1]</p>
-                <p>[5967 'M' 50 16]</p>
+                <p class="none"></p>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 movie">
                 <h3>他们喜欢的电影是：</h3>
-                <p>1555 [1596 'Career Girls (1997)' 'Drama']</p>
-                <p>1581 [1624 'Thousand Acres, A (1997)' 'Drama']</p>
-                <p>2157 [2226 'Ring, The (1927)' 'Drama']</p>
-                <p>2214 [2283 'Sheltering Sky, The (1990)' 'Drama']</p>
-                <p>2863 [2932 'Days of Heaven (1978)' 'Drama']</p>
-                <p>1555 [1596 'Career Girls (1997)' 'Drama']</p>
-                <p>1581 [1624 'Thousand Acres, A (1997)' 'Drama']</p>
-                <p>2157 [2226 'Ring, The (1927)' 'Drama']</p>
-                <p>2214 [2283 'Sheltering Sky, The (1990)' 'Drama']</p>
-                <p>2863 [2932 'Days of Heaven (1978)' 'Drama']</p>
+                <p class="none"></p>
             </div>
         </div>
 
@@ -126,42 +103,127 @@
     $(function(){
         // canvasGranuleBg.newInstanceCanvs();
 
-        // /*新闻列表加载*/
-        // $.ajax({
-        //     async: false,
-        //     type: "get",
-        //     url: "json/homeNews.json",
-        //     cache: false,
-        //     dataType: "json",
-        //     success: function(result) {
-        //
-        //         if(result.code == 200){
-        //             var data = result.data;
-        //             var imgSrc;
-        //             var newsClone;
-        //             var title;
-        //
-        //             for(var i=0;i<data.length;i++){
-        //                 imgSrc=data[i].imgMobile;
-        //                 title=data[i].title;
-        //                 newsClone=$(".none").clone();
-        //                 newsClone.attr("newId",data[i].id);     /*设置一个自定义属性id 跳转后加载不同数据*/
-        //                 newsClone.removeClass("none");
-        //                 newsClone.find("img").attr("src","upload/"+imgSrc);
-        //                 newsClone.find("p").html(title);
-        //                 $(".news_list").append(newsClone);
-        //             }
-        //         }else{
-        //             alert("请求失败！")
-        //         }
-        //     },
-        //     error:function(){
-        //         alert("异常！")
-        //     }
-        // });
-        // $('.news_list').delegate('.news_item', 'click', function () {    //	点击列表
-        //     self.location.href = 'detailNews.html'+"?"+'&newId='+$(this).attr('newId');
-        // });
+        
+        $("#btn1").click(function () {
+            var part1 = $(".part1");
+            var movieId = part1.find("#sameTypeMovie").val();
+            var movieNumber = part1.find("#sameTypeMovieNumber").val();
+
+            $.ajax({
+                async: false,
+                type: "get",
+                url: "http://0.0.0.0:7000/function1?movieId="+movieId+"&count="+movieNumber,
+                cache: false,
+                dataType: "json",
+                success: function(result) {
+                    part1.find("p:not(:first)").remove();
+                    var id;
+                    var name;
+                    var type;
+                    var clone;
+                    for (var i = 0;i<result.length;i++){
+                        id = result[i].id;
+                        name = result[i].name;
+                        type = result[i].type;
+                        clone = $(".part1 .none").clone();
+                        clone.removeClass("none");
+                        clone.html("id: "+id+"; "+"name: "+name+"; type: "+type);
+                        part1.append(clone);
+                    }
+                },
+                error:function(){
+                    alert("异常！")
+                }
+            });
+        });
+
+
+        $("#btn2").click(function () {
+            var part2 = $(".part2");
+            var userId = part2.find("#meLikeMovie").val();
+            var movieNumber = part2.find("#meLikeMovieNumber").val();
+
+            $.ajax({
+                async: false,
+                type: "get",
+                url: "http://0.0.0.0:7000/function2?userId="+userId+"&count="+movieNumber,
+                cache: false,
+                dataType: "json",
+                success: function(result) {
+                    console.log(result)
+                    part2.find("p:not(:first)").remove();
+                    var id;
+                    var name;
+                    var type;
+                    var clone;
+                    for (var i = 0;i<result.length;i++){
+                        id = result[i].id;
+                        name = result[i].name;
+                        type = result[i].type;
+                        clone = $(".part1 .none").clone();
+                        clone.removeClass("none");
+                        clone.html("id: "+id+"; "+"name: "+name+"; type: "+type);
+                        part2.append(clone);
+                    }
+                },
+                error:function(){
+                    alert("异常！")
+                }
+            });
+        });
+
+
+        $("#btn3").click(function () {
+            var part3 = $(".part3");
+            var movieId = part3.find("#otherLikeMovie").val();
+            var movieNumber = part3.find("#otherLikeMovieNumber").val();
+
+            $.ajax({
+                async: false,
+                type: "get",
+                url:"http://0.0.0.0:7000/function3?movieId="+movieId+"&count="+movieNumber,
+                cache: false,
+                dataType: "json",
+                success: function(result) {
+                    console.log(result)
+                    part3.find(".peaple p:not(:first)").remove();
+                    var mID;
+                    var name;
+                    var type;
+                    var cloneMovie;
+
+                    var uID;
+                    var sex;
+                    var age;
+                    var occupation;
+                    var cloneUser;
+                    for (var i = 0;i<result.users.length;i++){
+                        uID = result.users[i].id;
+                        sex = result.users[i].sex;
+                        age = result.users[i].age;
+                        occupation = result.users[i].occupation;
+                        cloneUser = $(".part3 .peaple .none").clone();
+                        cloneUser.removeClass("none");
+                        cloneUser.html("userID: "+uID+"; sex: "+sex+"; age: "+age+"; occupation: "+occupation);
+                        part3.find(".peaple").append(cloneUser);
+                    };
+                    for (var j = 0;j<result.movies.length;j++){
+                        mID = result.movies[j].id;
+                        name = result.movies[j].name;
+                        type = result.movies[j].type;
+                        cloneMovie = $(".part3 .movie .none").clone();
+                        cloneMovie.removeClass("none");
+                        cloneMovie.html("movieID: "+mID+"; sex: "+sex+"; name: "+name);
+                        part3.find(".movie").append(cloneMovie);
+                    }
+                },
+                error:function(){
+                    alert("异常！")
+                }
+            });
+        });
+
+
 
 
 
