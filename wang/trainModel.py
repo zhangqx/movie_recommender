@@ -3,6 +3,8 @@ import os
 #
 # % matplotlib inline
 # % config InlineBackend.figure_format = 'retina'
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import time
 import datetime
@@ -86,7 +88,7 @@ dropout_keep = 0.5
 # Learning Rate
 learning_rate = 0.0001
 # Show stats for every n number of batches
-show_every_n_batches = 20
+show_every_n_batches = 100
 
 save_dir = './save'
 
@@ -424,7 +426,7 @@ _ = plt.ylim()
 plt.plot(losses['test'], label='Test loss')
 plt.legend()
 _ = plt.ylim()
-
+plt.show()
 
 
 # 获取tensors 使用函数 get_tensor_by_name()从 loaded_graph 中获取tensors，后面的推荐功能要用到
