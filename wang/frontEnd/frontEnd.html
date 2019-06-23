@@ -12,6 +12,7 @@
             background:#2A2A2A;
             z-index: -1;
             color: #ffffff;
+            position: relative;
         }
         .none{
             display: none;
@@ -20,8 +21,9 @@
 </head>
 <body>
 
-<div id="large-header">
-    <canvas id="demo-canvas" width="2880" height="" style="position: absolute;top: 0;left: 0; z-index: -1"></canvas>
+
+<div id="main">
+    <canvas id="demo-canvas"  style="position: absolute;top: 0;left: 0; z-index: -1"></canvas>
 
     <h1 class="text-center">电影推荐系统前端界面演示</h1>
 
@@ -32,7 +34,7 @@
         <form class="form-inline">
             <div class="form-group">
                 <label class="sr-only" for="sameTypeMovie">请输入电影ID</label>
-                <input type="text" class="form-control" id="sameTypeMovie" placeholder="请输入电影ID:">
+                <input type="number" class="form-control" id="sameTypeMovie" placeholder="请输入电影ID:">
             </div>
             <div class="form-group">
                 <label class="sr-only" for="sameTypeMovieNumber">推荐电影数量</label>
@@ -50,7 +52,7 @@
         <form class="form-inline">
             <div class="form-group">
                 <label class="sr-only" for="meLikeMovie">请输入用户ID</label>
-                <input type="text" class="form-control" id="meLikeMovie" placeholder="请输入用户ID:">
+                <input type="number" class="form-control" id="meLikeMovie" placeholder="请输入用户ID:">
             </div>
             <div class="form-group">
                 <label class="sr-only" for="meLikeMovieNumber">推荐电影数量</label>
@@ -68,11 +70,11 @@
         <form class="form-inline">
             <div class="form-group">
                 <label class="sr-only" for="otherLikeMovie">请输入电影ID</label>
-                <input type="text" class="form-control" id="otherLikeMovie" placeholder="请输入电影ID:">
+                <input type="number" class="form-control" id="otherLikeMovie" placeholder="请输入电影ID:">
             </div>
             <div class="form-group">
-                <label class="sr-only" for="otherLikeMovieNumber">推荐电影数量</label>
-                <input type="number" class="form-control" id="otherLikeMovieNumber" placeholder="推荐电影数量">
+                <label class="sr-only" for="otherLikeMovieNumber">推荐用户数量</label>
+                <input type="number" class="form-control" id="otherLikeMovieNumber" placeholder="推荐用户数量">
             </div>
             <button type="button" class="btn btn-primary" id="btn3">提交</button>
         </form>
@@ -92,8 +94,8 @@
 </div>
 
 
-
 <script src="js/jquery-3.0.0.js"></script>
+<script src="js/plugIn.js"></script>
 <script src="js/bootstrap.js"></script>
 <!--<script src="js/convasBG.js"></script>-->
 <script src="js/EasePack.min.js"></script>
@@ -149,7 +151,6 @@
             var part2 = $(".part2");
             var userId = part2.find("#meLikeMovie").val();
             var movieNumber = part2.find("#meLikeMovieNumber").val();
-console.log(userId)
             if (userId>6040 || userId<1){
                 alert("用户ID是介于1-6040之间的数字，请重新输入");
                 return;
