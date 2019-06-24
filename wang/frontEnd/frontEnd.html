@@ -17,6 +17,11 @@
         .none{
             display: none;
         }
+        .result{
+            max-height: 400px;
+            overflow-y: scroll;
+            scrollbar-highlight-color: #ffffff;
+        }
     </style>
 </head>
 <body>
@@ -42,7 +47,9 @@
             </div>
             <button type="button" class="btn btn-default" id="btn1">提交</button>
         </form>
-        <p class="none"></p>
+        <div class="result result1">
+            <p class="none"></p>
+        </div>
     </div>
 
     <h5 class="page-header"></h5><!--水平分割线-->
@@ -60,6 +67,7 @@
             </div>
             <button type="button" class="btn btn-success" id="btn2">提交</button>
         </form>
+        <div class="result result2"></div>
         <p class="none"></p>
     </div>
 
@@ -79,11 +87,11 @@
             <button type="button" class="btn btn-primary" id="btn3">提交</button>
         </form>
         <div class="row">
-            <div class="col-lg-6 peaple">
+            <div class="col-lg-6 peaple result">
                 <h3>喜欢这个电影的人是：</h3>
                 <p class="none"></p>
             </div>
-            <div class="col-lg-6 movie">
+            <div class="col-lg-6 movie result">
                 <h3>他们喜欢的电影是：</h3>
                 <p class="none"></p>
             </div>
@@ -102,9 +110,6 @@
 <script src="js/index.js"></script>
 <script>
     $(function(){
-
-
-        
         $("#btn1").click(function () {
             var part1 = $(".part1");
             var movieId = part1.find("#sameTypeMovie").val();
@@ -136,7 +141,7 @@
                         clone = $(".part1 .none").clone();
                         clone.removeClass("none");
                         clone.html("id: "+id+"; "+"name: "+name+"; type: "+type);
-                        part1.append(clone);
+                        part1.find(".result1").append(clone);
                     }
                 },
                 error:function(){
@@ -178,7 +183,7 @@
                         clone = $(".part1 .none").clone();
                         clone.removeClass("none");
                         clone.html("id: "+id+"; "+"name: "+name+"; type: "+type);
-                        part2.append(clone);
+                        part2.find(".result2").append(clone);
                     }
                 },
                 error:function(){
