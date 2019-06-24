@@ -80,7 +80,7 @@ movieid2idx = {val[0]:i for i, val in enumerate(movies.values)}
 
 
 # Number of Epochs
-num_epochs = 1
+num_epochs = 5
 # Batch Size
 batch_size = 256
 
@@ -88,7 +88,7 @@ dropout_keep = 0.5
 # Learning Rate
 learning_rate = 0.0001
 # Show stats for every n number of batches
-show_every_n_batches = 100
+show_every_n_batches = 20
 
 save_dir = './save'
 
