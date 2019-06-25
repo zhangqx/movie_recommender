@@ -7,10 +7,12 @@ import pickle
 from flask import Flask
 from flask import request
 import json
+from flask_cors import CORS
 
 os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 
 app = Flask(__name__)
+CORS(app, supports_credentials=True)
 movie_matrics = pickle.load(open('movie_matrics.p', mode='rb'))
 users_matrics = pickle.load(open('users_matrics.p', mode='rb'))
 
@@ -101,7 +103,7 @@ def recommend_your_favorite_movie(user_id_val, top_k=10):
         p = p / np.sum(p)
         results = set()
         movies = []
-        while len(results) != 5:
+        while len(results) != top_k:
             c = np.random.choice(3883, 1, p=p)[0]
             results.add(c)
         for val in (results):
@@ -163,9 +165,14 @@ def recommend_other_favorite_movie(movie_id_val, top_k=20):
 
         results = set()
         movies = []
-        while len(results) != 5:
-            c = p[random.randrange(top_k)]
+        # while len(results) != 5:
+        #     c = p[random.randrange(top_k)]
+        #     results.add(c)
+
+        for i in range(top_k):
+            c = p[i]
             results.add(c)
+
         for val in (results):
             print(val)
             print(movies_orig[val])
